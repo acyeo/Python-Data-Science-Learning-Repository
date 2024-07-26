@@ -1,0 +1,28 @@
+#Display all settings.
+$ git config --list
+user.email=repl@datacamp.com
+user.name=Rep Loop
+core.editor=nano
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+
+#Change the email address to I_love_Git@datacamp.com.
+$ git config --global user.email 'I_love_Git@datacamp.com'
+
+
+#Check the --global settings to see if the update has been made.
+$ git config --global --list
+user.email=I_love_Git@datacamp.com
+user.name=Rep Loop
+core.editor=nano
+
+#Create an alias for the config --global command used to check the state of files, calling it st.
+$ git config --global alias.st status
+
+#Run the new alias command to confirm it works.
+$ git st
+On branch main
+nothing to commit, working tree clean
+

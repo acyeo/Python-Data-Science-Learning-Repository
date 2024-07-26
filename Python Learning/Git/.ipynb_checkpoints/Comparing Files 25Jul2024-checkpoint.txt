@@ -1,0 +1,27 @@
+#Use a command to see how all files differ from the last saved revision.
+$ git diff -r HEADdiff --git a/data/mental_health_survey.csv b/data/mental_health_survey.csv
+index e034015..82746b5 100644--- a/data/mental_health_survey.csv
++++ b/data/mental_health_survey.csv
+@@ -48,3 +48,4 @@ age,gender,family_history,treatment,work_interfere,benefits,mental_health_interv
+ 29,F,No,Yes,Rarely,Don't know,No,Don't know
+ 23,M,Yes,No,Sometimes,No,No,No
+ 25,M,Yes,Yes,Sometimes,Yes,No,Don't know
++41,M,Yes,Yes,Sometimes,No,No,No
+diff --git a/report.md b/report.md
+index 186398f..2d190de 100644
+--- a/report.md
++++ b/report.md
+@@ -2,3 +2,4 @@
+ TODO: write executive summary.
+ TODO: include link to raw data.
+ TODO: remember to cite funding sources!
++TODO: Update analysis using new participant data
+
+#Use a Git command to add only report.md to the staging area.
+git add report.md
+
+#Commit all files with the log message "New participant data and reminder for analysis".
+$ git commit -m "New participant data and reminder for analysis"
+
+#From the mh_survey repo, what single command can you use to see the changes that have been made to the report.md file?
+git diff -r HEAD report.md

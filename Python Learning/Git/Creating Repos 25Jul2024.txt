@@ -1,0 +1,14 @@
+#Create a Git repo called anxiety_workplace in your current directory.
+$ git init anxiety_workplace
+Initialized empty Git repository in /home/repl/projects/anxiety_workplace/.git/
+
+#Move into the new anxiety_workplace directory.
+$ cd anxiety_workplace
+
+#Create a file called todo.txt containing the following text: "TODO: Recap on existing research.".
+$ nano todo.txt
+
+#Turn your project into a Git repo.
+$ git init
+Initialized empty Git repository in /home/repl/mh_survey/.git/
+

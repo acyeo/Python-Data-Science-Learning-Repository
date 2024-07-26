@@ -1,0 +1,7 @@
+#Find out how many files and directories are in the data directory.
+$ lsdata  report.md
+
+#Using the terminal, enter the command to find out what version of Git is installed
+$ git --version
+git version 2.17.1
+

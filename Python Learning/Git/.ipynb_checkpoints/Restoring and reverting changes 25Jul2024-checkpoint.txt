@@ -1,0 +1,42 @@
+#Use a command to restore all files to their version located in the commit with a hash starting 7f71eade.
+$ git checkout 7f71eade
+Note: checking out '7f71eade'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 7f71ead Adding fresh data for the survey.
+
+#Display the last two commits for the report.md file.
+$ git log -2 report.md
+commit 36b761e467df557b49c28e1abf2f2aa548217ff3 (tag: add-line-to-report)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added reminder to cite funding sources.
+
+commit e39ecc8975ce5602f615e1f29ba3495f949def3e (tag: add-report-as-markdown)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:20 2022 +0000
+
+    Added summary report file.
+
+#Use the commit hash to restore the version of report.md committed with the log message "Added summary report file".
+$ git checkout e39ecc89 report.md
+
+#Put the restored version of report.md into the staging area.
+$ git add report.md
+
+#Commit the restored file with a log message of "Restoring version from commit e39ecc8".
+$ git commit -m "Restoring version from commit e39ecc8"
+[main 0382397] Restoring version from commit e39ecc8
+ 1 file changed, 1 deletion(-)
+
+
+

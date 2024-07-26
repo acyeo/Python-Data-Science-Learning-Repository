@@ -1,0 +1,72 @@
+#Using the console, run a command to find the hash of the commit that added a summary report file.
+$ git log
+commit 7f71eadea60bf38f53c8696d23f8314d85342aaf (HEAD -> main, tag: append-mental-health-survey-data, tag: alter-report-title-master, tag: alter-report-title-branch, alter-report-title)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Adding fresh data for the survey.
+
+commit 1182c28209a9b891cdc8f49f555ff9012b76451e (tag: add-results-directory, tag: add-data-file, tag: add-bin-directory)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added CSV data file
+
+commit 36b761e467df557b49c28e1abf2f2aa548217ff3 (tag: add-line-to-report)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added reminder to cite funding sources.
+
+commit e39ecc8975ce5602f615e1f29ba3495f949def3e (tag: add-report-as-markdown)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:20 2022 +0000
+
+    Added summary report file.
+(END)
+
+#Use a command to display the repo's history.
+$ git log
+commit 7f71eadea60bf38f53c8696d23f8314d85342aaf (HEAD -> main, tag: append-mental-health-survey-data, tag: alter-report-title-master, tag: alter-report-title-branch, alter-report-title)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Adding fresh data for the survey.
+
+commit 1182c28209a9b891cdc8f49f555ff9012b76451e (tag: add-results-directory, tag: add-data-file, tag: add-bin-directory)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added CSV data file
+
+commit 36b761e467df557b49c28e1abf2f2aa548217ff3 (tag: add-line-to-report)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added reminder to cite funding sources.
+
+commit e39ecc8975ce5602f615e1f29ba3495f949def3e (tag: add-report-as-markdown)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:20 2022 +0000
+
+    Added summary report file.
+
+#Show the difference between the latest version of report.md and the version in the commit that added a funding source citation reminder.
+$ git show 36b761e4
+commit 36b761e467df557b49c28e1abf2f2aa548217ff3 (tag: add-line-to-report)
+Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added reminder to cite funding sources.
+
+diff --git a/report.md b/report.md
+index 35f4b4d..186398f 100644
+--- a/report.md
++++ b/report.md
+@@ -1,3 +1,4 @@
+ # Mental Health in Tech Survey
+ TODO: write executive summary.
+ TODO: include link to raw data.
++TODO: remember to cite funding sources!
+
+

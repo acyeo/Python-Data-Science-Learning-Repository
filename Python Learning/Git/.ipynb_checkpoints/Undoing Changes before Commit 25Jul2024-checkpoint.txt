@@ -1,0 +1,23 @@
+#Unstage mental_health_survey.csv.
+$ git reset HEAD mental_health_survey.csv
+Unstaged changes after reset:
+M       data/mental_health_survey.csv
+
+#Add 41,M,Yes,No,No,No,Often,Yes to the end of mental_health_survey.csv.
+$ nano mental_health_survey.csv #press 'control + O', press enter to confirm, and press 'control + X'
+
+#Restage this file.
+git add  mental_health_survey.csv
+
+#Make a commit with the log message "Extra participant".
+$ git commit -m "Extra participant"
+
+#Undo the changes made to report.md
+$ git checkout -- report.md
+
+#Remove all files from the staging area.
+$ git reset HEAD
+
+#Undo changes to all unstaged files since the last commit.
+$ git checkout .
+

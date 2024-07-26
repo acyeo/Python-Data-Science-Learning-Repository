@@ -1,0 +1,29 @@
+#Your home directory /home/repl contains a repo called mh_survey, which has a directory called data.
+#Where is information about the history of the files in /home/repl/mh_survey/data stored?
+/home/repl/mh_survey/.git
+
+#Place the updated file in the staging area.
+$ git add mental_health_survey.csv
+
+#Commit the modified file with the log message "Adding one new participant's data"
+$ git commit -m "Adding one new participant's data"
+[main 64d5ee5] Adding one new participant's data 1 file changed, 1 insertion(+)
+
+#Check which files are in the staging area but not yet committed.
+$ git statusOn branch main
+Changes not staged for commit:  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   data/mental_health_survey.csv
+        modified:   report.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+#Add all files in your current directory and all subdirectories into the staging area.
+$ git add .
+
+#Commit all files in the staging area with the log message "Added 3 participants and a new section in report"
+[main f9d626b] Added 3 participants and a new section in report
+ 2 files changed, 2 insertions(+)
+
+

@@ -1,0 +1,92 @@
+#Add the updated summary_statistics.txt to the staging area.
+$ git add summary_statistics.txt
+
+#Make a commit with the log message "Adding age summary statistics".
+$ git commit -m "Adding age summary statistics"
+[summary-statistics ea351cb] Adding age summary statistics
+ 1 file changed, 1 insertion(+)
+ create mode 100644 summary_statistics.txt
+
+#Create a new branch called report.
+$ git checkout -b report
+Switched to a new branch 'report'
+
+#Execute a command to compare the alter-report-title and summary-statistics branches.
+$ git diff alter-report-title summary-statistics
+diff --git a/bin/summary b/bin/summary
+new file mode 100755
+index 0000000..9d6e2fa
+--- /dev/null
++++ b/bin/summary
+@@ -0,0 +1,44 @@
++Summary statistics
++
++Age:
++count: 49.00
++mean: 31.82
++std: 6.72
++min: 18.00
++25%: 28.00
++50%: 31.00
++75%: 35.00
++max: 46.00
++
++gender:
++M: 39
++F: 10
++
++family_history:
++Yes: 25
++No: 24
++
++treatment:
++Yes: 31
++No: 18
++
++work_interfere:
++Sometimes: 17
++Never: 15
++Often: 9
++Rarely: 8
++
++benefits:
++Don't know: 17
++Yes: 17
++No: 15
++
++mental_health_interview:
++No: 41
++Maybe: 7
++No: 1
++
++mental_vs_physical:
++Don't know: 24
++Yes: 15
++No: 10
+diff --git a/results/summary.txt b/results/summary.txt
+new file mode 100644
+index 0000000..e69de29
+
+#Switch to the report branch.
+$ git checkout report
+Switched to branch 'report'
+
+#Add "80% of participants were male, compared to the industry average of 67%." to the end of report.md.
+$ nano report.md
+
+#Place report.md into the staging area.
+$ git add report.md
+
+#Make a commit with the log message "Add gender summary in report".
+$ git commit -m "Add gender summary in report"
+[report daeeeab] Add gender summary in report
+ 1 file changed, 1 insertion(+)
+
+#Merge the report branch into the main branch.
+$ git merge report main
+Updating 7f71ead..3e5ccc9
+Fast-forward
+ report.md | 1 +
+ 1 file changed, 1 insertion(+)
+
+#

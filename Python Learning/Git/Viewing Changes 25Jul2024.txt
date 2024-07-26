@@ -1,0 +1,70 @@
+#Use an appropriate command to find out the changes in the second most recent commit compared to its parent commit.
+$ git show HEAD~1
+commit 1182c28209a9b891cdc8f49f555ff9012b76451e (tag: add-results-directory, tag: add-data-file, tag: add-bin-directory)Author: Rep Loop <repl@datacamp.com>
+Date:   Fri Aug 5 09:58:21 2022 +0000
+
+    Added CSV data file
+
+diff --git a/data/mental_health_survey.csv b/data/mental_health_survey.csv
+new file mode 100644
+index 0000000..8b9f09c
+--- /dev/null
++++ b/data/mental_health_survey.csv
+@@ -0,0 +1,47 @@
++age,gender,family_history,treatment,work_interfere,benefits,mental_health_interview,mental_vs_physical
++31,M,No,No,Never,Don't know,No,Don't know
++40,M,Yes,Yes,Often,Don't know,No,Don't know
++24,F,Yes,Yes,Rarely,No,No,Yes
++36,M,Yes,Yes,Often,No,No,Yes
++28,M,No,No,Never,Don't know,Maybe,Yes
++43,F,Yes,Yes,Rarely,Yes,No,Don't know
++40,F,No,No,Never,Don't know,Maybe,Don't know
++32,F,No,Yes,Sometimes,Yes,No,Yes
++35,F,Yes,Yes,Rarely,Yes,Maybe,Yes
++46,F,No,Yes,Often,Yes,No,No
++30,M,No,No,Never,No,No,Yes
++41,M,No,Yes,Sometimes,Yes,Maybe,Yes
++34,M,Yes,Yes,Rarely,No,No,Yes
++40,M,Yes,Yes,Sometimes,Yes,No,Don't know
++34,M,No,Yes,Sometimes,No,No,Yes
++34,M,No,No,Never,Don't know,No,Don't know
++28,M,No,No,Never,Don't know,Maybe,Yes
++29,F,Yes,Yes,Rarely,Yes,Maybe,Don't know
++34,M,Yes,No,Never,Yes,No,Don't know
++43,M,No,No,Never,Don't know,No,Yes
++42,F,Yes,Yes,Sometimes,Yes,No,No
++27,M,No,No,Sometimes,Yes,No,Don't know
++25,M,Yes,Yes,Often,No,No,No
++33,M,Yes,Yes,Sometimes,Don't know,No,Yes
++33,M,Yes,Yes,Sometimes,No,No,Don't know
++23,M,No,Yes,Sometimes,Yes,No,Don't know
++31,M,Yes,No,Sometimes,No,No,Yes
++19,M,No,No,Never,Don't know,No,No
++34,M,Yes,Yes,Sometimes,No,No,No
++32,M,No,No,Never,Yes,No,Don't know
++24,F,Yes,Yes,Often,No,No,Don't know
++30,M,No,No,Often,No,Maybe,Don't know
++31,M,No,No,Never,Don't know,No,Don't know
++29,M,Yes,Yes,Never,Don't know,No,No
++32,M,No,No,Rarely,No,Yes,No
++32,M,Yes,Yes,Often,No,No,No
++38,M,Yes,Yes,Sometimes,Don't know,No,Don't know
++29,M,Yes,No,Often,Yes,No,Don't know
++27,M,No,Yes,Never,Yes,No,No
++38,M,Yes,Yes,Sometimes,Don't know,No,Don't know
++31,M,Yes,Yes,Never,Don't know,No,Don't know
++30,M,Yes,Yes,Often,No,No,Yes
++45,M,No,No,Never,Yes,No,Don't know
++18,M,No,Yes,Sometimes,Don't know,No,Don't know
++19,M,No,Yes,Sometimes,Don't know,No,Don't know
++28,M,No,Yes,Rarely,Yes,No,Yes
+(END)
+
+#Display line-by-line changes and associated metadata for report.md.
+$ git annotate report.md
+e39ecc89        (  Rep Loop     2022-08-05 09:58:20 +0000       1)# Mental Health in Tech Survey
+e39ecc89        (  Rep Loop     2022-08-05 09:58:20 +0000       2)TODO: write executive summary.
+e39ecc89        (  Rep Loop     2022-08-05 09:58:20 +0000       3)TODO: includelink to raw data.
+36b761e4        (  Rep Loop     2022-08-05 09:58:21 +0000       4)TODO: remember to cite funding sources!
+
+
