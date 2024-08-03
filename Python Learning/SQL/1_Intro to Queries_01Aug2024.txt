@@ -1,0 +1,154 @@
+# Return all titles from the books table
+SELECT title
+FROM books
+
+#correct output:
+title
+10-Day Green Smoothie Cleanse
+11/22/63: A Novel
+12 Rules for Life: An Antidote to Chaos
+1984 (Signet Classics)
+5,000 Awesome Facts (About Everything!) (National Geographic Kids)
+A Dance with Dragons (A Song of Ice and Fire)
+A Game of Thrones / A Clash of Kings / A Storm of Swords / A Feast of Crows / A Dance with Dragons
+A Gentleman in Moscow: A Novel
+A Higher Loyalty: Truth, Lies, and Leadership
+A Man Called Ove: A Novel
+A Patriot's History of the United States: From Columbus's Great Discovery to the War on Terror
+A Stolen Life: A Memoir
+A Wrinkle in Time (Time Quintet)
+Act Like a Lady, Think Like a Man: What Men Really Think About Love, Relationships, Intimacy, and Commitment
+Adult Coloring Book Designs: Stress Relief Coloring Book: Garden Designs, Mandalas, Animals, and Paisley Patterns
+Adult Coloring Book: Stress Relieving Animal Designs
+Adult Coloring Book: Stress Relieving Patterns
+Adult Coloring Books: A Coloring Book for Adults Featuring Mandalas and Henna Inspired Flowers, Animals, and Paisley…
+Alexander Hamilton
+All the Light We Cannot See
+Allegiant
+American Sniper: The Autobiography of the Most Lethal Sniper in U.S. Military History
+And the Mountains Echoed
+Arguing with Idiots: How to Stop Small Minds and Big Government
+Astrophysics for People in a Hurry
+Autobiography of Mark Twain, Vol. 1
+Baby Touch and Feel: Animals
+Balance (Angie's Extreme Stress Menders)
+Barefoot Contessa Foolproof: Recipes You Can Trust: A Cookbook
+Barefoot Contessa, How Easy Is That?: Fabulous Recipes & Easy Tips
+Becoming
+Being Mortal: Medicine and What Matters in the End
+Between the World and Me
+
+# Select title and author from the books table
+SELECT title, author
+FROM books;
+
+#correct output:
+title	author
+10-Day Green Smoothie Cleanse	JJ Smith
+11/22/63: A Novel	Stephen King
+12 Rules for Life: An Antidote to Chaos	Jordan B. Peterson
+1984 (Signet Classics)	George Orwell
+5,000 Awesome Facts (About Everything!) (National Geographic Kids)	National Geographic Kids
+A Dance with Dragons (A Song of Ice and Fire)	George R. R. Martin
+A Game of Thrones / A Clash of Kings / A Storm of Swords / A Feast of Crows / A Dance with Dragons	George R. R. Martin
+A Gentleman in Moscow: A Novel	Amor Towles
+A Higher Loyalty: Truth, Lies, and Leadership	James Comey
+A Man Called Ove: A Novel	Fredrik Backman
+A Patriot's History of the United States: From Columbus's Great Discovery to the War on Terror	Larry Schweikart
+A Stolen Life: A Memoir	Jaycee Dugard
+A Wrinkle in Time (Time Quintet)	Madeleine L'Engle
+Act Like a Lady, Think Like a Man: What Men Really Think About Love, Relationships, Intimacy, and Commitment	Steve Harvey
+Adult Coloring Book Designs: Stress Relief Coloring Book: Garden Designs, Mandalas, Animals, and Paisley Patterns	Adult Coloring Book Designs
+Adult Coloring Book: Stress Relieving Animal Designs	Blue Star Coloring
+Adult Coloring Book: Stress Relieving Patterns	Blue Star Coloring
+Adult Coloring Books: A Coloring Book for Adults Featuring Mandalas and Henna Inspired Flowers, Animals, and Paisley…	Coloring Books for Adults
+Alexander Hamilton	Ron Chernow
+All the Light We Cannot See	Anthony Doerr
+Allegiant	Veronica Roth
+American Sniper: The Autobiography of the Most Lethal Sniper in U.S. Military History	Chris Kyle
+And the Mountains Echoed	Khaled Hosseini
+Arguing with Idiots: How to Stop Small Minds and Big Government	Glenn Beck
+Astrophysics for People in a Hurry	Neil deGrasse Tyson
+Autobiography of Mark Twain, Vol. 1	Mark Twain
+Baby Touch and Feel: Animals	DK
+Balance (Angie's Extreme Stress Menders)	Angie Grace
+Barefoot Contessa Foolproof: Recipes You Can Trust: A Cookbook	Ina Garten
+Barefoot Contessa, How Easy Is That?: Fabulous Recipes & Easy Tips	Ina Garten
+Becoming	Michelle Obama
+Being Mortal: Medicine and What Matters in the End	Atul Gawande
+Between the World and Me	Ta-Nehisi Coates
+Born to Run	Bruce Springsteen
+Breaking Dawn (The Twilight Saga, Book 4)	Stephenie Meyer
+Broke: The Plan to Restore Our Trust, Truth and Treasure	Glenn Beck
+Brown Bear, Brown Bear, What Do You See?	Bill Martin Jr.
+Cabin Fever (Diary of a Wimpy Kid, Book 6)	Jeff Kinney
+Calm the F*ck Down: An Irreverent Adult Coloring Book (Irreverent Book Series)	Sasha O'Hara
+Can't Hurt Me: Master Your Mind and Defy the Odds	David Goggins
+Capital in the Twenty First Century	Thomas Piketty
+Catching Fire (The Hunger Games)	Suzanne Collins
+Cravings: Recipes for All the Food You Want to Eat: A Cookbook	Chrissy Teigen
+Crazy Love: Overwhelmed by a Relentless God	Francis Chan
+Crazy Rich Asians (Crazy Rich Asians Trilogy)	Kevin Kwan
+Creative Haven Creative Cats Coloring Book (Adult Coloring)	Marjorie Sarnat
+Creative Haven Owls Coloring Book (Adult Coloring)	Marjorie Sarnat
+Cutting for Stone	Abraham Verghese
+Daring Greatly: How the Courage to Be Vulnerable Transforms the Way We Live, Love, Parent, and Lead	Brené Brown
+David and Goliath: Underdogs, Misfits, and the Art of Battling Giants	Malcolm Gladwell
+Dead And Gone: A Sookie Stackhouse Novel (Sookie Stackhouse/True Blood)	Charlaine Harris
+Dead in the Family (Sookie Stackhouse/True Blood, Book 10)	Charlaine Harris
+Dead Reckoning (Sookie Stackhouse/True Blood, Book 11)	Charlaine Harris
+Dear Zoo: A Lift-the-Flap Book	Rod Campbell
+Decision Points	George W. Bush
+Delivering Happiness: A Path to Profits, Passion, and Purpose	Tony Hsieh
+Diagnostic and Statistical Manual of Mental Disorders, 5th Edition: DSM-5	American Psychiatric Association
+Diary of a Wimpy Kid: Hard Luck, Book 8	Jeff Kinney
+Diary of a Wimpy Kid: The Last Straw (Book 3)	Jeff Kinney
+Diary of a Wimpy Kid: The Long Haul	Jeff Kinney
+Difficult Riddles For Smart Kids: 300 Difficult Riddles And Brain Teasers Families Will Love (Books for Smart Kids)	M Prefontaine
+Divergent	Veronica Roth
+Divergent / Insurgent	Veronica Roth
+Divine Soul Mind Body Healing and Transmission System: The Divine Way to Heal You, Humanity, Mother Earth, and All…	Zhi Gang Sha
+Doctor Sleep: A Novel	Stephen King
+Dog Days (Diary of a Wimpy Kid, Book 4) (Volume 4)	Jeff Kinney
+Dog Man and Cat Kid: From the Creator of Captain Underpants (Dog Man #4)	Dav Pilkey
+Dog Man: A Tale of Two Kitties: From the Creator of Captain Underpants (Dog Man #3)	Dav Pilkey
+Dog Man: Brawl of the Wild: From the Creator of Captain Underpants (Dog Man #6)	Dav Pilkey
+Dog Man: Fetch-22: From the Creator of Captain Underpants (Dog Man #8)	Dav Pilkey
+Dog Man: For Whom the Ball Rolls: From the Creator of Captain Underpants (Dog Man #7)	Dav Pilkey
+Dog Man: Lord of the Fleas: From the Creator of Captain Underpants (Dog Man #5)	Dav Pilkey
+Double Down (Diary of a Wimpy Kid #11)	Jeff Kinney
+Dover Creative Haven Art Nouveau Animal Designs Coloring Book (Creative Haven Coloring Books)	Marty Noble
+Drive: The Surprising Truth About What Motivates Us	Daniel H. Pink
+Eat This Not That! Supermarket Survival Guide: The No-Diet Weight Loss Solution	David Zinczenko
+Eat This, Not That! Thousands of Simple Food Swaps that Can Save You 10, 20, 30 Pounds--or More!	David Zinczenko
+Eat to Live: The Amazing Nutrient-Rich Program for Fast and Sustained Weight Loss, Revised Edition	Joel Fuhrman MD
+Eclipse (Twilight Sagas)	Stephenie Meyer
+Eclipse (Twilight)	Stephenie Meyer
+Educated: A Memoir	Tara Westover
+Enchanted Forest: An Inky Quest and Coloring book (Activity Books, Mindfulness and Meditation, Illustrated Floral Prints…	Johanna Basford
+Fahrenheit 451	Ray Bradbury
+Fantastic Beasts and Where to Find Them: The Original Screenplay (Harry Potter)	J.K. Rowling
+Fear: Trump in the White House	Bob Woodward
+Fifty Shades Darker	E L James
+Fifty Shades Freed: Book Three of the Fifty Shades Trilogy (Fifty Shades of Grey Series) (English Edition)	E L James
+Fifty Shades of Grey: Book One of the Fifty Shades Trilogy (Fifty Shades of Grey Series)	E L James
+Fifty Shades Trilogy (Fifty Shades of Grey / Fifty Shades Darker / Fifty Shades Freed)	E L James
+Fire and Fury: Inside the Trump White House	Michael Wolff
+First 100 Words	Roger Priddy
+Food Rules: An Eater's Manual	Michael Pollan
+Frozen (Little Golden Book)	RH Disney
+Game Change: Obama and the Clintons, McCain and Palin, and the Race of a Lifetime	John Heilemann
+Game of Thrones Boxed Set: A Game of Thrones/A Clash of Kings/A Storm of Swords/A Feast for Crows	George R.R. Martin
+George Washington's Sacred Fire	Peter A. Lillback
+George Washington's Secret Six: The Spy Ring That Saved the American Revolution	Brian Kilmeade
+Giraffes Can't Dance	Giles Andreae
+
+#Select all fields from the books table
+SELECT *
+FROM books;
+
+#correct output:
+id	title	author	year	genre
+1	10-Day Green Smoothie Cleanse	JJ Smith	2016	Non Fiction
+2	11/22/63: A Novel	Stephen King	2011	Fiction
+3	12 Rules for Life: An Antidote to Chaos	Jordan B. Peterson	2018	Non Fiction

@@ -1,0 +1,52 @@
+#Select the name of each person in the people table, sorted alphabetically.
+SELECT name
+FROM people
+ORDER BY name;
+
+
+#correct output: 
+name
+50 Cent
+A. Michael Baldwin
+A. Raven Cruz
+A.J. Buckley
+A.J. DeLucia
+A.J. Langer
+AJ Michalka
+Aaliyah
+Aaron Ashmore
+Aaron Hann
+Aaron Hill
+
+#Select the title and duration for every film, from longest duration to shortest.
+SELECT title, duration 
+from films
+ORDER BY duration DESC;
+
+correct output:
+title	duration
+Destiny	null
+Should've Been Romeo	null
+Hum To Mohabbat Karega	null
+
+#Select the release_year, duration, and title of films ordered by their release year and duration, in that order.
+SELECT release_year, duration, title
+FROM films
+ORDER BY release_year, duration;
+
+#correct output
+release_year	duration	title
+1916	123	Intolerance: Love's Struggle Throughout the Ages
+1920	110	Over the Hill to the Poorhouse
+1925	151	The Big Parade
+
+#Select the certification, release_year, and title from films ordered first by certification (alphabetically) and second by release year, starting with the most recent year.
+SELECT certification, release_year, title
+FROM films
+ORDER BY certification, release_year DESC;
+
+#correct output:
+certification	release_year	title
+Approved	1967	In Cold Blood
+Approved	1967	You Only Live Twice
+Approved	1967	Point Blank

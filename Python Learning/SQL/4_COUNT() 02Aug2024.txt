@@ -1,0 +1,40 @@
+#-- Count the number of records in the people table
+SELECT COUNT(people) AS count_records
+FROM people;
+
+#correct output: 
+count_records
+8397
+
+#SELECT COUNT(birthdate) AS count_birthdate
+FROM people;
+
+#correct output: 
+count_birthdate
+6152
+
+#-- Count the records for languages and countries represented in the films table
+SELECT COUNT(language) AS count_languages, COUNT(country) AS count_countries
+FROM films;
+
+#correct output:
+count_languages	count_countries
+4957	4966
+
+#-- Return the unique countries from the films table
+SELECT DISTINCT country
+FROM films;
+
+#correct output:
+country
+null
+Soviet Union
+Indonesia
+
+#Return the number of unique countries represented in the films table, aliased as count_distinct_countries.
+SELECT COUNT(DISTINCT country) AS count_distinct_countries
+FROM films;
+
+#correct output:
+count_distinct_countries
+64

@@ -1,0 +1,19 @@
+#-- List all film titles with missing budgets
+SELECT title AS no_budget_info
+from films
+WHERE title IS NULL;
+
+#correct output:
+no_budget_info
+Pandora's Box
+The Prisoner of Zenda
+The Blue Bird
+
+#Count the number of films with a language associated with them and use the alias count_language_known.
+SELECT COUNT(*) AS count_language_known
+FROM films
+WHERE language IS NOT NULL
+
+#correct output: 
+count_language_known
+4957

@@ -1,0 +1,74 @@
+#-- Select unique authors from the books table
+SELECT DISTINCT author
+FROM books;
+
+#correct output:
+author
+John Heilemann
+Sheryl Sandberg
+Brené Brown
+DK
+Delegates of the Constitutional
+Rebecca Skloot
+Crispin Boyer
+Daniel James Brown
+Bruce Springsteen
+Fredrik Backman
+Heidi Murkoff
+Dan Brown
+Daniel H. Pink
+Jay Asher
+Jordan B. Peterson
+Rod Campbell
+William Davis
+Alex Michaelides
+Scholastic
+Ina Garten
+Jennifer Smith
+Nathan W. Pyle
+School Zone
+
+#-- Select unique authors and genre combinations from the books table
+SELECT DISTINCT author, genre
+FROM books;
+
+#correct output:
+author	genre
+Eben Alexander	Non Fiction
+Adam Mansbach	Fiction
+Garth Stein	Fiction
+
+#-- Alias author so that it becomes unique_author
+SELECT DISTINCT author AS unique_author
+FROM books;
+
+#correct output: 
+unique_author
+John Heilemann
+Sheryl Sandberg
+Brené Brown
+DK
+Delegates of the Constitutional
+Rebecca Skloot
+Crispin Boyer
+Daniel James Brown
+Bruce Springsteen
+Fredrik Backman
+
+# Save the results of this query as a view called library_authors
+CREATE VIEW library_authors AS
+SELECT DISTINCT author AS unique_author
+FROM books;
+
+# Select all columns from library_authors
+SELECT *
+FROM library_authors
+
+#Correct output:
+unique_author
+John Heilemann
+Sheryl Sandberg
+Brené Brown
+DK
+Delegates of the Constitutional
+

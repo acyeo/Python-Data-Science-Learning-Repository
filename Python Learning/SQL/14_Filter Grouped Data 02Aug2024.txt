@@ -1,0 +1,81 @@
+#Select country from the films table, and get the distinct count of certification aliased as certification_count.
+#Group the results by country.
+#Filter the unique count of certifications to only results greater than 10.
+SELECT country, COUNT(DISTINCT certification) AS certification_count
+from films
+GROUP BY country
+HAVING COUNT(DISTINCT certification) > 10;
+
+#correct output:
+country	certification_count
+USA	12
+
+#Select the country and the average budget as average_budget, rounded to two decimal, from films.
+#Group the results by country.
+#Filter the results to countries with an average budget of more than one billion (1000000000).
+#Sort by descending order of the average_budget.
+SELECT country, ROUND(AVG(budget), 2) AS average_budget
+FROM films
+GROUP BY country
+HAVING ROUND(AVG(budget), 2) > 1000000000;
+
+#correct output:
+country	average_budget
+South Korea	1383960000.00
+Hungary	1260000000.00
+
+
+#Select the release_year for each film in the films table, filter for records released after 1990, and group by release_year.
+SELECT release_year
+FROM films
+WHERE release_year >1990
+GROUP BY release_year;
+
+#correct output:
+release_year
+2008
+1991
+2009
+2005
+2013
+2003
+2015
+1993
+2002
+
+#Modify the query to include the average budget aliased as avg_budget and average gross aliased as avg_gross for the results we have so far.
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year >1990
+GROUP BY release_year;
+
+#correct output:
+release_year	avg_budget	avg_gross
+2008	41804885.572139303483	44573509.378109452736
+1991	25176548.387096774194	53844501.666666666667
+2009	37073287.037037037037	46207440.200000000000
+
+#Modify the query once more so that only years with an average budget of greater than 60 million are included.
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year >1990
+GROUP BY release_year
+HAVING AVG(budget) > 60000000;
+
+#correct output:
+release_year	avg_budget	avg_gross
+2005	70323938.231527093596	41159143.290640394089
+2006	93968929.577464788732	39237855.953703703704
+
+#Finally, order the results from the highest average gross and limit to one.
+SELECT release_year, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+FROM films
+WHERE release_year >1990
+GROUP BY release_year
+HAVING AVG(budget) > 60000000;
+ORDER BY avg_gross DESC
+LIMIT 1; 
+
+#correct output:
+release_year	avg_budget	avg_gross
+2005	70323938.231527093596	41159143.290640394089

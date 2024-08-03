@@ -1,0 +1,43 @@
+#Select the release_year and count of films released in each year aliased as film_count
+SELECT release_year, COUNT(title) AS film_count
+FROM films
+GROUP BY release_year;
+
+#corect output:
+release_year	film_count
+1954	5
+1988	31
+
+#Select the release_year and average duration aliased as avg_duration of all films, grouped by release_year.
+SELECT release_year, AVG(duration) AS avg_duration
+from films
+GROUP BY release_year;
+
+#correct output:
+release_year	avg_duration
+1954	140.6000000000000000
+1988	107.0000000000000000
+
+#Select the release_year, country, and the maximum budget aliased as max_budget for each year and each country; sort your results by release_year and country.
+SELECT release_year, country, MAX(budget) AS max_budget
+from films
+GROUP BY release_year, country
+ORDER BY release_year;
+
+#correct output:
+release_year	country	max_budget
+1916	USA	385907
+1920	USA	100000
+1925	USA	245000
+
+#Which release_year had the most language diversity?
+SELECT release_year, COUNT(DISTINCT language) AS language_diversity
+FROM films
+GROUP BY release_year
+ORDER BY language_diversity DESC;
+
+#correct output:
+release_year	language_diversity
+2006	16
+2015	15
+2005	14
