@@ -1,0 +1,45 @@
+#Perform an inner join of countries AS c (left) with populations AS p (right), on code.
+#Select name, year and fertility_rate
+SELECT name, year, fertility_rate
+FROM countries AS c
+INNER JOIN populations AS p
+ON c.code = p.country_code;
+
+#correct output:
+name	year	fertility_rate
+Aruba	2010	1.704
+Aruba	2015	1.647
+Afghanistan	2010	5.746
+
+#Chain another inner join to your query with the economies table AS e, using code.
+#Select name, and using table aliases, select year and unemployment_rate from the economies table.
+SELECT name, year, fertility_rate, ___
+FROM countries AS c
+INNER JOIN populations AS p
+ON c.code = p.country_code
+-- Join to economies (as e)
+INNER JOIN economies AS e
+-- Match on country code
+ON c.code = e.code;
+
+#correct output:
+name	year	fertility_rate	year	unemployment_rate
+Afghanistan	2010	5.746	2015	null
+Afghanistan	2010	5.746	2010	null
+Afghanistan	2015	4.653	2015	null
+
+#Modify your query so that you are joining to economies on year as well as code.
+SELECT name, e.year, fertility_rate, unemployment_rate
+FROM countries AS c
+INNER JOIN populations AS p
+ON c.code = p.country_code
+INNER JOIN economies AS e
+ON c.code = e.code
+-- Add an additional joining condition such that you are also joining on year
+	AND e.year = p.year;
+
+#correct output:
+name	year	fertility_rate	unemployment_rate
+Afghanistan	2010	5.746	null
+Afghanistan	2015	4.653	null
+Angola	2010	6.416	null

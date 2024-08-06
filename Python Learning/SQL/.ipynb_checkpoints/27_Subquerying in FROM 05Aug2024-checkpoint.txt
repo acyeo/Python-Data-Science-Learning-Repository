@@ -1,0 +1,80 @@
+#Begin with a query that groups by each country code from languages, and counts the languages spoken in each country as lang_num.
+#In your SELECT statement, return code and lang_num (in that order).
+
+SELECT code, COUNT(*) AS lang_num
+FROM languages
+GROUP BY code;
+
+#correct output:
+code	lang_num
+PRY	2
+NRU	3
+MDG	3
+
+#Select local_name from countries, with the aliased lang_num from your subquery (which has been nested and aliased for you as sub).
+#Use WHERE to match the code field from countries and sub.
+
+SELECT local_name, sub.lang_num
+FROM countries,
+  (SELECT code, COUNT(*) AS lang_num
+  FROM languages
+  GROUP BY code) AS sub
+WHERE countries.code = sub.code
+ORDER BY lang_num DESC;
+
+#correct output:
+local_name	lang_num
+Zambia	19
+YeItyop´iya	16
+Zimbabwe	16
+Nepal	14
+Bharat/India	14
+
+#Select country code, inflation_rate, and unemployment_rate from economies.
+#Filter code for the set of countries which do not contain the words "Republic" or "Monarchy" in their gov_form.
+
+SELECT code, inflation_rate, unemployment_rate
+FROM economies
+WHERE year = 2015 
+  AND code NOT IN
+	(SELECT code
+  FROM countries
+  WHERE gov_form LIKE '%Republic%' OR gov_form LIKE '%Monarchy%')
+ORDER BY inflation_rate;
+
+#correct output:
+code	inflation_rate	unemployment_rate
+KNA	-2.302	null
+VCT	-1.726	null
+AFG	-1.549	null
+CHE	-1.14	3.178
+BRB	-1.061	11.3
+BIH	-1.018	27.7
+
+#From cities, select the city name, country code, proper population, and metro area population, as well as the field city_perc, which calculates #the proper population as a percentage of metro area population for each city (using the formula provided).
+#Filter city name with a subquery that selects capital cities from countries in 'Europe' or continents with 'America' at the end of their name.
+#Exclude NULL values in metroarea_pop.
+#Order by city_perc (descending) and return only the first 10 rows.
+
+SELECT name, country_code, city_proper_pop, metroarea_pop, (city_proper_pop / metroarea_pop * 100) AS city_perc
+FROM cities 
+WHERE name IN 
+    (SELECT capital
+    FROM countries
+    WHERE continent = 'Europe' OR continent LIKE '%America')
+    AND metroarea_pop IS NOT NULL
+ORDER BY city_perc DESC
+LIMIT 10;
+
+#correct output:
+name	country_code	city_proper_pop	metroarea_pop	city_perc
+Lima	PER	8852000	10750000	82.34418630599976
+Bogota	COL	7878783	9800000	80.3957462310791
+Moscow	RUS	12197596	16170000	75.43349266052246
+Vienna	AUT	1863881	2600000	71.6877281665802
+Montevideo	URY	1305082	1947604	67.00961589813232
+Caracas	VEN	1943901	2923959	66.48181676864624
+Rome	ITA	2877215	4353775	66.0855233669281
+Brasilia	BRA	2556149	3919864	65.2101457118988
+London	GBR	8673713	13879757	62.491822242736816
+Budapest	HUN	1759407	2927944	60.09018421173096

@@ -1,0 +1,89 @@
+#Select country code as a single field from the countries table, filtering for countries in the 'Middle East' region.
+
+SELECT code 
+FROM countries
+WHERE (region = 'Middle East');
+
+#correct output:
+code
+ARE
+ARM
+AZE
+BHR
+GEO
+IRQ
+ISR
+YEM
+JOR
+KWT
+
+#Write a second query to SELECT the name of each unique language appearing in the languages table; do not use column aliases here.
+#Order the result set by name in ascending order.
+
+SELECT DISTINCT name
+FROM languages
+ORDER BY name;
+
+#correct output:
+name
+Afar
+Afrikaans
+Akyem
+Albanian
+Alsatian
+Amerindian
+
+#Create a semi join out of the two queries you've written, 
+#which filters unique languages returned in the first query for only those languages spoken in the 'Middle East'.
+
+SELECT DISTINCT name
+FROM languages
+WHERE code IN
+    (SELECT code
+    FROM countries
+    WHERE region = 'Middle East')
+ORDER BY name;
+
+#correct output:
+name
+Arabic
+Aramaic
+Armenian
+Azerbaijani
+Azeri
+Baluchi
+Bulgarian
+Circassian
+English
+Farsi
+Filipino
+French
+
+#Begin by writing a query to return the code and name (in order, not aliased) for all countries in the continent of Oceania from the countries table.
+
+SELECT code, name
+FROM countries
+WHERE continent = 'Oceania';
+
+#correct output:
+code	name
+ASM	American Samoa
+AUS	Australia
+FJI	Fiji Islands
+GUM	Guam
+KIR	Kiribati
+
+#Now, build on your query to complete your anti join, by adding an additional filter to return every country code that is not included in the currencies table.
+
+SELECT code, name
+FROM countries
+WHERE continent = 'Oceania'
+  AND code NOT IN
+    (SELECT code
+    FROM currencies);
+
+#correct output:
+code	name
+ASM	American Samoa
+FJI	Fiji Islands
+GUM	Guam

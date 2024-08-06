@@ -1,0 +1,140 @@
+#Perform an inner join with cities AS c1 on the left and countries as c2 on the right.
+#Use code as the field to merge your tables on.
+SELECT 
+    c1.name AS city,
+    code,
+    c2.name AS country,
+    region,
+    city_proper_pop
+FROM cities AS c1
+INNER JOIN countries AS c2
+ON c1.country_code = c2.code
+ORDER BY code DESC;
+
+#correct output:
+city	code	country	region	city_proper_pop
+Harare	ZWE	Zimbabwe	Eastern Africa	1606000
+Lusaka	ZMB	Zambia	Eastern Africa	1742979
+Cape Town	ZAF	South Africa	Southern Africa	3740026
+
+#Change the code to perform a LEFT JOIN instead of an INNER JOIN.
+#After executing this query, have a look at how many records the query result contains
+SELECT 
+	c1.name AS city, 
+    code, 
+    c2.name AS country,
+    region, 
+    city_proper_pop
+FROM cities AS c1
+LEFT JOIN countries AS c2
+ON c1.country_code = c2.code
+ORDER BY code DESC;
+
+#correct output:
+city	code	country	region	city_proper_pop
+Taichung	null	null	null	2752413
+Tainan	null	null	null	1885252
+Kaohsiung	null	null	null	2778918
+
+#Complete the LEFT JOIN with the countries table on the left and the economies table on the right on the code field.
+#Filter the records from the year 2010.
+
+#correct output:
+SELECT name, region, gdp_percapita
+FROM countries AS c
+LEFT JOIN economies AS e
+-- Match on code fields
+ON c.code = e.code
+-- Filter for the year 2010
+WHERE year = 2010;
+
+#correct output:
+name	region	gdp_percapita
+Afghanistan	Southern and Central Asia	539.667
+Angola	Central Africa	3599.27
+Albania	Southern Europe	4098.13
+
+#To calculate per capita GDP per region, begin by grouping by region.
+#After your GROUP BY, choose region in your SELECT statement, followed by average GDP per capita using the AVG() function, 
+#with AS avg_gdp as your alias.
+SELECT region, AVG(gdp_percapita) AS avg_gdp
+FROM countries AS c
+LEFT JOIN economies AS e
+USING(code)
+WHERE year = 2010
+GROUP BY region;
+
+#correct output:
+region	avg_gdp
+Southern Africa	5051.597973632813
+Caribbean	11413.339454064002
+Eastern Africa	1757.3481616973877
+
+#Order the result set by the average GDP per capita from highest to lowest.
+#Return only the first 10 records in your result.
+SELECT region, AVG(gdp_percapita) AS avg_gdp
+FROM countries AS c
+LEFT JOIN economies AS e
+USING(code)
+WHERE year = 2010
+GROUP BY region
+-- Order by descending avg_gdp
+ORDER BY avg_gdp DESC
+-- Return only first 10 records
+LIMIT 10;
+
+#correct output:
+region	avg_gdp
+Western Europe	58130.96149553572
+Nordic Countries	57073.99765625
+North America	47911.509765625
+Australia and New Zealand	44792.384765625
+British Islands	43588.330078125
+Eastern Asia	24962.8076171875
+Southern Europe	22926.410910866478
+Middle East	18204.641515395222
+Baltic Countries	12631.029947916666
+Caribbean	11413.339454064002
+
+# Write a new query using RIGHT JOIN that produces an identical result to the LEFT JOIN provided.
+SELECT countries.name AS country, languages.name AS language, percent
+FROM countries
+RIGHT JOIN languages
+USING(code)
+ORDER BY language;
+
+#correct output:
+country	language	percent
+Ethiopia	Afar	1.7
+Eritrea	Afar	null
+Djibouti	Afar	null
+Namibia	Afrikaans	10.4
+South Africa	Afrikaans	13.5
+Ghana	Akyem	3.2
+Albania	Albanian	98.8
+Switzerland	Albanian	3
+
+#Complete the join of countries AS c with populations as p.
+#Filter on the year 2010.
+#Sort your results by life expectancy in ascending order.
+#Limit the result to five countries.
+
+SELECT 
+	c.name AS country,
+    region,
+    life_expectancy AS life_exp
+FROM countries AS c
+FULL JOIN populations AS p 
+ON c.code = p.country_code
+-- Filter for only results in the year 2010
+WHERE year IN ('2010')
+ORDER BY life_exp
+LIMIT 5;
+
+#correct output:
+country	region	life_exp
+Lesotho	Southern Africa	47.483414
+Central African Republic	Central Africa	47.625317
+Sierra Leone	Western Africa	48.22895
+Swaziland	Southern Africa	48.345757
+Zimbabwe	Eastern Africa	49.574657

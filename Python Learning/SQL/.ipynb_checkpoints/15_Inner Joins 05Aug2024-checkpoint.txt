@@ -1,0 +1,60 @@
+#-- Select all columns from cities
+SELECT *
+FROM cities;
+
+#correct output:
+name	country_code	city_proper_pop	metroarea_pop	urbanarea_pop
+Abidjan	CIV	4765000	null	4765000
+Abu Dhabi	ARE	1145000	null	1145000
+Abuja	NGA	1235880	6000000	1235880
+
+#Perform an inner join with the cities table on the left and the countries table on the right; do not alias tables here or in the next step.
+#Identify the relevant column names to join ON by inspecting the cities and countries tabs in the console.
+SELECT * 
+FROM cities
+INNER JOIN countries
+ON cities.country_code = countries.code;
+
+#correct output:
+name	country_code	city_proper_pop	metroarea_pop	urbanarea_pop	code	name	continent	region	surface_area	indep_year	local_name	gov_form	capital	cap_long	cap_lat
+Abidjan	CIV	4765000	null	4765000	CIV	Cote d'Ivoire	Africa	Western Africa	322463	1960	Cote dIvoire	Republic	Yamoussoukro	-4.0305	5.332
+Abu Dhabi	ARE	1145000	null	1145000	ARE	United Arab Emirates	Asia	Middle East	83600	1971	Al-Imarat al-´Arabiya al-Muttahida	Emirate Federation	Abu Dhabi	54.3705	24.4764
+Abuja	NGA	1235880	6000000	1235880	NGA	Nigeria	Africa
+
+#Complete the SELECT statement to keep only the name of the city, the name of the country, and the region the country is located in (in the order specified).
+#Alias the name of the city AS city and the name of the country AS country.
+
+#correct output:
+city	country	region
+Abidjan	Cote d'Ivoire	Western Africa
+Abu Dhabi	United Arab Emirates	Middle East
+Abuja	Nigeria	Western Africa
+
+#Start with your inner join in line 5; join the tables countries AS c (left) with economies (right), aliasing economies AS e.
+#Next, use code as your joining field in line 7; do not use the USING command here.
+#Lastly, select the following columns in order in line 2: code from the countries table (aliased as country_code), name, year, and inflation_rate.
+-- Select fields with aliases
+SELECT c.code AS country_code, c.name, e.year, e.inflation_rate
+FROM countries AS c
+INNER JOIN economies AS e
+ON c.code = e.code;
+
+#correct output:
+country_code	name	year	inflation_rate
+AFG	Afghanistan	2010	2.179
+AFG	Afghanistan	2015	-1.549
+AGO	Angola	2010	14.48
+
+#Use the country code field to complete the INNER JOIN with USING; do not change any alias names.
+SELECT c.name AS country, l.name AS language, official
+FROM countries AS c
+INNER JOIN languages AS l
+-- Match using the code column
+USING(code);
+
+#correct output:
+country	language	official
+Afghanistan	Dari	true
+Afghanistan	Pashto	true
+
+
