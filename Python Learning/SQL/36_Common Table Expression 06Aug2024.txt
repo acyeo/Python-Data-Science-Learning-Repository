@@ -1,0 +1,94 @@
+#Complete the syntax to declare your CTE.
+#Select the country_id and match id from the match table in your CTE.
+#Left join the CTE to the league table using country_id.
+
+-- Set up your CTE
+WITH match_list AS (
+    SELECT 
+  		country_id, 
+  		id
+    FROM match
+    WHERE (home_goal + away_goal) >= 10)
+-- Select league and count of matches from the CTE
+SELECT
+    l.name AS league,
+    COUNT(match_list.id) AS matches
+FROM league AS l
+-- Join the CTE to the league table
+LEFT JOIN match_list ON l.id = match_list.country_id
+GROUP BY l.name;
+
+#correct output:
+league	matches
+Switzerland Super League	0
+Poland Ekstraklasa	0
+Netherlands Eredivisie	1
+Scotland Premier League	0
+France Ligue 1	0
+Spain LIGA BBVA	4
+Germany 1. Bundesliga	1
+Italy Serie A	0
+Portugal Liga ZON Sagres	0
+England Premier League	3
+Belgium Jupiler League	0
+
+#Declare your CTE, where you create a list of all matches with the league name.
+#Select the league, date, home, and away goals from the CTE.
+#Filter the main query for matches with 10 or more goals.
+
+-- Set up your CTE
+WITH match_list AS (
+  -- Select the league, date, home, and away goals
+    SELECT 
+  		name AS league, 
+     	date, 
+  		m.home_goal, 
+  		m.away_goal,
+       (m.home_goal + m.away_goal) AS total_goals
+    FROM match AS m
+    LEFT JOIN league as l ON m.country_id = l.id)
+-- Select the league, date, home, and away goals from the CTE
+SELECT match_list.league, date, home_goal, away_goal
+FROM match_list
+-- Filter by total goals
+WHERE total_goals >= 10;
+
+#correct output:
+league	date	home_goal	away_goal
+England Premier League	2011-08-28	8	2
+England Premier League	2012-12-29	7	3
+England Premier League	2013-05-19	5	5
+
+#Declare a CTE that calculates the total goals from matches in August of the 2013/2014 season.
+#Left join the CTE onto the league table using country_id from the match_list CTE.
+#Filter the list on the inner subquery to only select matches in August of the 2013/2014 season.
+
+-- Set up your CTE
+WITH match_list AS (
+    SELECT 
+  		country_id,
+  	   (home_goal + away_goal) AS goals
+    FROM match
+  	-- Create a list of match IDs to filter data in the CTE
+    WHERE id IN (
+       SELECT id
+       FROM match
+       WHERE season = '2013/2014' AND EXTRACT(MONTH FROM date) = 08))
+-- Select the league name and average of goals in the CTE
+SELECT 
+	l.name,
+    AVG(match_list.goals)
+FROM league AS l
+-- Join the CTE onto the league table
+LEFT JOIN match_list ON l.id = match_list.country_id
+GROUP BY l.name;
+
+#correct output
+name	avg
+Switzerland Super League	1.9375000000000000
+Poland Ekstraklasa	2.3103448275862069
+Netherlands Eredivisie	3.4146341463414634
+Scotland Premier League	2.1379310344827586
+France Ligue 1	2.0270270270270270
+Spain LIGA BBVA	2.9200000000000000
+Germany 1. Bundesliga	3.2352941176470588

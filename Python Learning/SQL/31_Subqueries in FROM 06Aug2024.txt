@@ -1,0 +1,61 @@
+#Create the subquery to be used in the next step, which selects the country ID and match ID (id) from the match table.
+#Filter the query for matches with greater than or equal to 10 goals.
+
+SELECT 
+	country_id, 
+    match.id
+FROM match
+WHERE (home_goal + away_goal) >= 10;
+
+#correct output:
+country_id	id
+1729	3093
+1729	3369
+1729	3566
+
+#Construct a subquery that selects only matches with 10 or more total goals.
+#Inner join the subquery onto country in the main query.
+#Select name from country and count the id column from match.
+
+SELECT
+    c.name AS country_name,
+    COUNT(sub.id) AS matches
+FROM country AS c
+INNER JOIN (SELECT country_id, id 
+           FROM match
+           WHERE (home_goal + away_goal) >= 10) AS sub
+ON c.id = sub.country_id
+GROUP BY country_name;
+
+#correct output:
+country_name	matches
+Netherlands	1
+Spain	4
+Germany	1
+
+#Complete the subquery inside the FROM clause. Select the country name from the country table, along with the date, the home goal, the away goal, and the total goals columns from the match table.
+#Create a column in the subquery that adds home and away goals, called total_goals. This will be used to filter the main query.
+#Select the country, date, home goals, and away goals in the main query.
+#Filter the main query for games with 10 or more total goals.
+
+SELECT
+    country,
+    date,
+    home_goal,
+    away_goal
+FROM 
+	(SELECT name AS country, 
+     	    m.date, 
+     		m.home_goal, 
+     		m.away_goal,
+           (m.home_goal + m.away_goal) AS total_goals
+    FROM match AS m
+    LEFT JOIN country AS c
+    ON m.country_id = c.id) AS subq
+WHERE total_goals >= 10;
+
+#correct output:
+country	date	home_goal	away_goal
+England	2011-08-28	8	2
+England	2012-12-29	7	3
+England	2013-05-19	5	5

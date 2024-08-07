@@ -1,0 +1,202 @@
+#Select the team's long name and API id from the teams_germany table.
+#Filter the query for FC Schalke 04 and FC Bayern Munich using IN, giving you the team_api_IDs needed for the next step.
+
+SELECT
+	team_long_name, 
+	team_api_id
+FROM teams_germany
+WHERE team_long_name IN ('FC Schalke 04' , 'FC Bayern Munich');
+
+#correct output:
+team_long_name	team_api_id
+FC Bayern Munich	9823
+FC Schalke 04	10189
+
+#Create a CASE statement that identifies whether a match in Germany included FC Bayern Munich, FC Schalke 04, or neither as the home team.
+#Group the query by the CASE statement alias, home_team.
+
+SELECT 
+	CASE WHEN hometeam_id = 10189 THEN 'FC Schalke 04'
+        WHEN hometeam_id = 9823 THEN 'FC Bayern Munich'
+         ELSE 'Other' END AS home_team,
+	COUNT(id) AS total_matches
+FROM matches_germany
+GROUP BY home_team;
+
+#correct output:
+home_team	total_matches
+FC Bayern Munich	68
+Other	1088
+FC Schalke 04	68
+
+#Select the date of the match and create a CASE statement to identify matches as home wins, home losses, or ties.
+
+SELECT 
+	date,
+	CASE WHEN home_goal > away_goal THEN 'Home win!'
+        WHEN home_goal < away_goal THEN 'Home loss :(' 
+        ELSE 'Tie' END AS outcome
+FROM matches_spain;
+
+#correct output:
+date	outcome
+2012-01-21	Home loss :(
+2012-01-22	Home win!
+2012-01-22	Home loss :(
+
+#Left join the teams_spain table team_api_id column to the matches_spain table awayteam_id. This allows us to retrieve the away team's identity.
+#Select team_long_name from teams_spain as opponent and complete the CASE statement from Step 1.
+
+SELECT 
+	m.date,
+	t.team_long_name AS opponent, 
+	CASE WHEN m.home_goal > m.away_goal THEN 'Home win!'
+        WHEN m.home_goal < m.away_goal THEN 'Home loss :('
+        ELSE 'Tie' END AS outcome
+FROM matches_spain AS m
+LEFT JOIN teams_spain AS t
+ON m.awayteam_id = t.team_api_id;
+
+#correct output:
+date	opponent	outcome
+2011-10-23	Valencia CF	Tie
+2011-10-01	Valencia CF	Home win!
+2011-09-21	Valencia CF	Tie
+
+#Complete the same CASE statement as the previous steps.
+#Filter for matches where the home team is FC Barcelona (id = 8634).
+
+SELECT 
+	m.date,
+	t.team_long_name AS opponent,
+	CASE WHEN m.home_goal > m.away_goal THEN 'Barcelona win!'
+        WHEN m.home_goal < m.away_goal THEN 'Barcelona loss :(' 
+        ELSE 'Tie' END AS outcome 
+FROM matches_spain AS m
+LEFT JOIN teams_spain AS t 
+ON m.awayteam_id = t.team_api_id
+WHERE m.hometeam_id = 8634; 
+
+#correct output:
+date	opponent	outcome
+2011-10-29	RCD Mallorca	Barcelona win!
+2011-11-19	Real Zaragoza	Barcelona win!
+2011-12-03	Levante UD	Barcelona win!
+
+#Complete the CASE statement to identify Barcelona's away team games (id = 8634) as wins, losses, or ties.
+#Left join the teams_spain table team_api_id column on the matches_spain table hometeam_id column. This retrieves the identity of the home team opponent.
+#Filter the query to only include matches where Barcelona was the away team.
+
+SELECT  
+	m.date,
+	t.team_long_name AS opponent,
+	CASE WHEN m.home_goal < m.away_goal THEN 'Barcelona win!'
+        WHEN m.home_goal > m.away_goal THEN 'Barcelona loss :(' 
+        ELSE 'Tie' END AS outcome
+FROM matches_spain AS m
+LEFT JOIN teams_spain AS t 
+ON m.hometeam_id = t.team_api_id
+WHERE m.awayteam_id = 8634;
+
+#correct output:
+
+date	opponent	outcome
+2012-01-22	Málaga CF	Barcelona win!
+2011-10-25	Granada CF	Barcelona win!
+2011-11-06	Athletic Club de Bilbao	Tie
+
+#Complete the first CASE statement, identifying Barcelona or Real Madrid as the home team using the hometeam_id column.
+#Complete the second CASE statement in the same way, using awayteam_id.
+
+SELECT 
+	date,
+	CASE WHEN hometeam_id = 8634 THEN 'FC Barcelona' 
+        ELSE 'Real Madrid CF' END AS home,
+	CASE WHEN awayteam_id = 8634 THEN 'FC Barcelona' 
+        ELSE 'Real Madrid CF' END AS away
+FROM matches_spain
+WHERE (awayteam_id = 8634 OR hometeam_id = 8634)
+      AND (awayteam_id = 8633 OR hometeam_id = 8633);
+
+#correct output:
+date	home	away
+2011-12-10	Real Madrid CF	FC Barcelona
+2012-04-21	FC Barcelona	Real Madrid CF
+2013-03-02	Real Madrid CF	FC Barcelona
+
+#Construct the final CASE statement identifying who won each match. Note there are 3 possible outcomes, but 5 conditions that you need to identify.
+#Fill in the logical operators to identify Barcelona or Real Madrid as the winner.
+
+SELECT 
+	date,
+	CASE WHEN hometeam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END as home,
+	CASE WHEN awayteam_id = 8634 THEN 'FC Barcelona' 
+         ELSE 'Real Madrid CF' END as away,
+	CASE WHEN home_goal > away_goal AND hometeam_id = 8634 THEN 'Barcelona win!'
+        WHEN home_goal > away_goal AND hometeam_id = 8633 THEN 'Real Madrid win!'
+        WHEN home_goal < away_goal AND awayteam_id = 8634 THEN 'Barcelona win!'
+        WHEN home_goal < away_goal AND awayteam_id = 8633 THEN 'Real Madrid win!'
+        ELSE 'Tie!' END AS outcome
+FROM matches_spain
+WHERE (awayteam_id = 8634 OR hometeam_id = 8634)
+      AND (awayteam_id = 8633 OR hometeam_id = 8633);
+
+#correct output:
+date	home	away	outcome
+2011-12-10	Real Madrid CF	FC Barcelona	Barcelona win!
+2012-04-21	FC Barcelona	Real Madrid CF	Real Madrid win!
+2013-03-02	Real Madrid CF	FC Barcelona	Real Madrid win!
+
+#Identify Bologna's team ID listed in the teams_italy table by selecting the team_long_name and team_api_id.
+
+SELECT
+	team_long_name,
+	team_api_id
+FROM teams_italy
+WHERE team_long_name = 'Bologna';
+
+#correct output:
+team_long_name	team_api_id
+Bologna	9857
+
+#Select the season and date that a match was played.
+#Complete the CASE statement so that only Bologna's home and away wins are identified.
+
+SELECT 
+	season,
+	date,
+	CASE WHEN hometeam_id = 9857 
+        AND home_goal > away_goal 
+        THEN 'Bologna Win'
+		WHEN awayteam_id = 9857 
+        AND away_goal > home_goal 
+        THEN 'Bologna Win' 
+		END AS outcome
+FROM matches_italy;
+
+#correct output:
+season	date	outcome
+2011/2012	2011-12-21	null
+2011/2012	2011-12-21	null
+2011/2012	2011-12-20	null
+
+#Select the home_goal and away_goal for each match.
+#Use the CASE statement in the WHERE clause to filter all NULL values generated by the statement in the previous step.
+
+SELECT 
+	season,
+	date,
+	home_goal,
+	away_goal
+FROM matches_italy
+WHERE (hometeam_id = 9857 AND home_goal > away_goal) 
+   OR (awayteam_id = 9857 AND away_goal > home_goal);
+
+#correct output:
+season	date	home_goal	away_goal
+2011/2012	2011-10-30	3	1
+2011/2012	2011-12-04	1	0
+2011/2012	2012-01-08	2	0
+2011/2012	2012-02-21	2	0
+2011/2012	2012-02-17	0	

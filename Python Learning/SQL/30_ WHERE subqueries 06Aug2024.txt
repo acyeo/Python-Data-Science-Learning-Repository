@@ -1,0 +1,61 @@
+Select the average of home + away goals, multiplied by 3
+
+SELECT 
+	3 * AVG(home_goal + away_goal)
+FROM matches_2013_2014;
+
+#correct output:
+?column?
+8.3004617414248020
+
+#Select the date, home goals, and away goals in the main query.
+#Filter the main query for matches where the total goals scored exceed the value in the subquery.
+
+SELECT 
+    date,
+	home_goal,
+	away_goal
+FROM  matches_2013_2014
+WHERE (home_goal + away_goal) > 
+       (SELECT 3 * AVG(home_goal + away_goal)
+        FROM matches_2013_2014); 
+
+#correct output:
+date	home_goal	away_goal
+2013-12-14	6	3
+2014-03-22	3	6
+2013-10-30	7	3
+
+#Create a subquery in the WHERE clause that retrieves all unique hometeam_ID values from the match table.
+#Select the team_long_name and team_short_name from the team table. Exclude all values from the subquery in the main query.
+
+SELECT 
+	team_long_name,
+	team_short_name
+FROM team 
+WHERE team_api_id NOT IN
+     (SELECT DISTINCT hometeam_ID  FROM match);
+
+#correct output:
+team_long_name	team_short_name
+FCV Dender EH	DEN
+KSV Roeselare	ROS
+Tubize	
+
+#Create a subquery in WHERE clause that retrieves all hometeam_ID values from match with a home_goal score greater than or equal to 8.
+#Select the team_long_name and team_short_name from the team table. Include all values from the subquery in the main query.
+
+SELECT
+	team_long_name,
+	team_short_name
+FROM team 
+WHERE team_api_id IN
+	  (SELECT hometeam_ID 
+       FROM match
+       WHERE home_goal >= 8);
+
+#correct output
+team_long_name	team_short_name
+Manchester United	MUN
+Chelsea	CHE
+Southampton	SOU
